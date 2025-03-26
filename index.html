@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru" x-data="{ calc: { amount: '', type: 'cash', result: 0 }, faq: { open: null } }">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сотрудничество с риэлторами - Сибирский Дом</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js for interactivity -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.5/cdn.min.js" defer></script>
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+  <!-- Swiper.js JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+  <style>
+    /* Qo'shimcha custom uslublar */
+    .active-faq { background-color: #f0f0f0; }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      gsap.from(".animate", { opacity: 0, y: 50, duration: 1, stagger: 0.3 });
+    });
+
+    // Reward calculator function
+    function calculateReward() {
+      const amount = parseFloat(document.getElementById('saleAmount').value) || 0;
+      const type = document.getElementById('saleType').value;
+      let reward = 0;
+      if (type === 'cash') {
+        reward = amount * 0.10;
+      } else if (type === 'escrow') {
+        reward = amount * 0.08;
+      } else if (type === 'credit') {
+        reward = amount * 0.04;
+      }
+      document.getElementById('rewardResult').innerText = reward.toFixed(2) + " р.";
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <!-- Navigation Header -->
+    <header class="bg-blue-500 bg-center bg-no-repeat text-white p-4 shadow-md fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold">
+                <img style="width: 150px;" src="c:\Users\Samandar\Downloads\SD_logo_H.png" alt="">
+            </div>
+            <nav class="space-x-4">
+                <a href="#hero" class="hover:underline">Главная</a>
+                <a href="#conditions" class="hover:underline">Условия</a>
+                <a href="#tools" class="hover:underline">Инструменты</a>
+                <a href="#projects" class="hover:underline">Проекты</a>
+                <a href="#register" class="hover:underline">Регистрация</a>
+                <a href="#faq" class="hover:underline">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+
+  <!-- Hero Section -->
+  <section class="relative w-full h-screen bg-blue-500 text-white text-center overflow-hidden">
+    <div class="slider-container w-full h-full relative">
+      <div class="slider-wrapper flex transition-transform duration-700 ease-in-out" style="transition: transform 0.7s ease-in-out;">
+        <!-- Slide 1 -->
+        <div class="slide w-full h-screen flex items-center justify-center bg-cover bg-center"
+          style="background-image: url('assets/img/image8.jpg');">
+          <div class="bg-black bg-opacity-50 p-10 rounded-lg">
+            <h1 class="text-5xl font-bold">Станьте партнером «Сибирского Дома»</h1>
+            <p class="mt-4 text-xl">Получайте до 10% агентского вознаграждения и полный набор инструментов для успешных сделок.</p>
+            <div class="mt-6">
+              <a href="#register"
+                class="inline-block px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg shadow hover:bg-gray-200 transition duration-300">Стать
+                партнером</a>
+              <a href="#conditions"
+                class="inline-block ml-4 px-8 py-4 bg-transparent border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition duration-300">Узнать
+                подробности</a>
+            </div>
+          </div>
+        </div>
+      <!-- Tugmalar -->
+      <button class="prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-75 transition">❮</button>
+      <button class="next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full text-black hover:bg-opacity-75 transition">❯</button>
+  
+      <!-- Pastki nuqtalar (pagination) -->
+      <div class="pagination absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
+    </div>
+  </section>
+  
+  
+
+  <!-- Преимущества Section -->
+  <section id="advantages" class="py-16 bg-gray-50 animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Преимущества</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div class="p-6 bg-white shadow rounded-lg text-center hover:scale-105 transition transform duration-300">
+          <h3 class="font-semibold text-xl mb-2">Агентское вознаграждение до 10%</h3>
+          <p>Высокий процент от сделки для каждого партнёра.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg text-center hover:scale-105 transition transform duration-300">
+          <h3 class="font-semibold text-xl mb-2">Семейная ипотека 6%</h3>
+          <p>Выгодные условия для всех категорий граждан.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg text-center hover:scale-105 transition transform duration-300">
+          <h3 class="font-semibold text-xl mb-2">Без первоначального взноса</h3>
+          <p>Возможность начать строительство без крупных авансовых вложений.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg text-center hover:scale-105 transition transform duration-300">
+          <h3 class="font-semibold text-xl mb-2">Экскурсии по Субботам</h3>
+          <p>Регулярные показы готовых объектов для привлечения клиентов.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg text-center hover:scale-105 transition transform duration-300">
+          <h3 class="font-semibold text-xl mb-2">Обучение риэлторов</h3>
+          <p>Бесплатные тренинги и экскурсии для повышения профессионализма.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Условия сотрудничества Section -->
+  <section id="conditions" class="py-16 bg-white animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Условия сотрудничества</h2>
+      <div class="mt-10 space-y-8">
+        <div class="flex flex-col md:flex-row items-center justify-between p-6 border rounded-lg shadow-sm">
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold">Вознаграждение 10%</h3>
+            <p>Сделка за наличный расчет</p>
+          </div>
+          <div class="mt-4 md:mt-0">
+            <img src="https://via.placeholder.com/150x100?text=Cash" alt="Наличный расчет" class="rounded-lg shadow">
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-between p-6 border rounded-lg shadow-sm">
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold">Вознаграждение 8%</h3>
+            <p>Сделка в ипотеку. Выплата после раскрытия Эскроу</p>
+          </div>
+          <div class="mt-4 md:mt-0">
+            <img src="https://via.placeholder.com/150x100?text=Escrow" alt="Эскроу" class="rounded-lg shadow">
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-between p-6 border rounded-lg shadow-sm">
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold">Вознаграждение 4%</h3>
+            <p>Сделка в ипотеку. Выплата после подписания кредитного договора</p>
+          </div>
+          <div class="mt-4 md:mt-0">
+            <img src="https://via.placeholder.com/150x100?text=Credit" alt="Кредит" class="rounded-lg shadow">
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="#register" class="inline-block px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-300">Зарегистрироваться как риэлтор</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Инструменты для продаж Section -->
+  <section id="tools" class="py-16 bg-gray-50 animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Инструменты для продаж</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        <div class="p-6 bg-white shadow rounded-lg hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-2">Кредиты на строительство</h3>
+          <p>Кредиты под 6% для всех категорий граждан — предложите клиентам доступное строительство.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-2">Без первоначального взноса</h3>
+          <p>Возможность взять кредит на строительство и покупку участка без первоначального взноса — больше клиентов смогут начать стройку прямо сейчас.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-2">Экскурсии по субботам</h3>
+          <p>Приглашайте клиентов на экскурсии в готовые дома каждую субботу. После просмотра современного дома клиенты захотят построить такой же.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-lg hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-2">Обучение риэлторов</h3>
+          <p>Бесплатное обучение для риэлторов: экскурсия по объектам, разбор проектов и условий кредитования.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Проекты домов Section -->
+  <section id="projects" class="py-16 bg-white animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Проекты домов</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <!-- Проект 1 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-2xl transition duration-300">
+          <img src="https://via.placeholder.com/350x200?text=Рига+63" alt="Рига 63" class="w-full rounded-lg mb-4">
+          <h3 class="text-xl font-semibold">Рига 63</h3>
+          <p>63 кв.м &bull; от 4 050 000 р &bull; Кредит от 24 300 р</p>
+        </div>
+        <!-- Проект 2 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-2xl transition duration-300">
+          <img src="https://via.placeholder.com/350x200?text=Локи" alt="Локи" class="w-full rounded-lg mb-4">
+          <h3 class="text-xl font-semibold">Локи</h3>
+          <p>101 кв.м &bull; от 4 185 000 р &bull; Кредит от 25 100 р</p>
+        </div>
+        <!-- Проект 3 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-2xl transition duration-300">
+          <img src="https://via.placeholder.com/350x200?text=Форест" alt="Форест" class="w-full rounded-lg mb-4">
+          <h3 class="text-xl font-semibold">Форест</h3>
+          <p>136 кв.м &bull; от 7 005 000 р &bull; Кредит от 42 000 р</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Калькулятор вознаграждения Section -->
+  <section id="calculator" class="py-16 bg-blue-100 animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Калькулятор вознаграждения</h2>
+      <div class="max-w-md mx-auto mt-8 bg-white p-6 rounded-lg shadow">
+        <div class="mb-4">
+          <label for="saleAmount" class="block text-lg font-medium">Сумма сделки (р):</label>
+          <input id="saleAmount" type="number" placeholder="Введите сумму" class="w-full p-3 border rounded-lg" oninput="calculateReward()">
+        </div>
+        <div class="mb-4">
+          <label for="saleType" class="block text-lg font-medium">Тип сделки:</label>
+          <select id="saleType" class="w-full p-3 border rounded-lg" onchange="calculateReward()">
+            <option value="cash">Наличный расчет (10%)</option>
+            <option value="escrow">Ипотека, выплата после раскрытия Эскроу (8%)</option>
+            <option value="credit">Ипотека, выплата после подписания договора (4%)</option>
+          </select>
+        </div>
+        <div class="text-center mt-4">
+          <span class="text-xl font-bold">Вознаграждение: </span>
+          <span id="rewardResult" class="text-2xl font-extrabold text-blue-600">0 р.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Регистрация и контакты Section -->
+  <section id="register" class="py-16 bg-gray-50 animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Регистрация и контакты</h2>
+      <div class="flex flex-col md:flex-row mt-8 gap-8">
+        <!-- Форма регистрации -->
+        <div class="flex-1 bg-white p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold text-center mb-4">Зарегистрироваться как риэлтор</h3>
+          <form class="space-y-4">
+            <input type="text" placeholder="Имя" class="w-full p-3 border rounded-lg">
+            <input type="tel" placeholder="Телефон" class="w-full p-3 border rounded-lg">
+            <input type="text" placeholder="Город" class="w-full p-3 border rounded-lg">
+            <input type="text" placeholder="Компания" class="w-full p-3 border rounded-lg">
+            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300">Отправить заявку</button>
+          </form>
+        </div>
+        <!-- Контактная информация -->
+        <div class="flex-1 bg-white p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold text-center mb-4">Контакты</h3>
+          <ul class="space-y-4 text-lg">
+            <li><strong>Телефон:</strong> +7 (383) 331 55 00</li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/79039315500" class="text-blue-600 hover:underline">+7 903 931 55 00</a></li>
+            <li><strong>Telegram:</strong> <a href="https://t.me/sksibirdom" class="text-blue-600 hover:underline">@sksibirdom</a></li>
+            <li><strong>Адрес:</strong> Новосибирск, ул. Ломоносова 55/1, офис 7</li>
+            <li><strong>График работы:</strong> Пн-Пт, 10:00–18:00</li>
+          </ul>
+          <div class="mt-6">
+            <iframe class="w-full h-64 rounded-lg" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&amp;q=Новосибирск+ул.+Ломоносова+55/1" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Вопросы и ответы Section -->
+  <section id="faq" class="py-16 bg-white animate">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center">Вопросы и ответы</h2>
+      <div class="mt-8 max-w-3xl mx-auto space-y-4">
+        <!-- FAQ Item 1 -->
+        <div class="border rounded-lg" x-data="{ open: false }">
+          <button @click="open = !open" class="w-full text-left px-4 py-3 font-medium flex justify-between items-center">
+            <span>Как рассчитывается вознаграждение?</span>
+            <span x-text="open ? '-' : '+'"></span>
+          </button>
+          <div x-show="open" x-collapse class="px-4 py-3 border-t">
+            <p>Размер вознаграждения зависит от типа сделки. Для сделок за наличный расчет — 10% от суммы сделки. Для сделок с ипотекой предусмотрено два варианта: 8% после раскрытия Эскроу и 4% после подписания кредитного договора. Размеры не суммируются.</p>
+          </div>
+        </div>
+        <!-- FAQ Item 2 -->
+        <div class="border rounded-lg" x-data="{ open: false }">
+          <button @click="open = !open" class="w-full text-left px-4 py-3 font-medium flex justify-between items-center">
+            <span>Что нужно, чтобы начать сотрудничество?</span>
+            <span x-text="open ? '-' : '+'"></span>
+          </button>
+          <div x-show="open" x-collapse class="px-4 py-3 border-t">
+            <p>Для начала сотрудничества оставьте свои контакты в форме регистрации, получите каталог с ценами на дома, отправьте уведомление на Вашего клиента и пригласите его на экскурсию.</p>
+          </div>
+        </div>
+        <!-- FAQ Item 3 -->
+        <div class="border rounded-lg" x-data="{ open: false }">
+          <button @click="open = !open" class="w-full text-left px-4 py-3 font-medium flex justify-between items-center">
+            <span>Как записаться на экскурсию для риэлторов?</span>
+            <span x-text="open ? '-' : '+'"></span>
+          </button>
+          <div x-show="open" x-collapse class="px-4 py-3 border-t">
+            <p>Оставьте свои контакты в форме регистрации. Наш менеджер свяжется с Вами для уточнения деталей.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Плавающая кнопка для связи (WhatsApp/Telegram) -->
+  <a href="https://t.me/sksibirdom" target="_blank" class="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  </a>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center p-6 mt-10 animate">
+    <p>© 2025 Сибирский Дом. Все права защищены.</p>
+  </footer>
+
+  <!-- Additional Scripts if needed -->
+  <script>
+    // Можно добавить дополнительные JavaScript функции здесь
+    // Например, обработку формы регистрации, отправку данных через Telegram Bot и т.д.
+  </script>
+</body>
+</html>
